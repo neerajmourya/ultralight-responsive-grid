@@ -1,5 +1,5 @@
-# ultralight-responsive-grid
-12 columns responsive grid keeping the filesize light so that can be downloaded faster. It is based on mobile first or small screen first.
+# Ultralight Responsive Grid
+12 columns light weight responsive grid keeping the filesize light so that can be downloaded faster. It is based on mobile first or small screen first.
 
 # How to use
 
