@@ -6,16 +6,16 @@
 To create a row use :
 
 ```
-<div class="row"></div>
+<div class="rw"></div>
 ```
 
 To create columns use :
 
 ```
-<div class="row">
-  <div class="col s12 m6 l4">Column 1</div>
-  <div class="col s12 m6 l4">Column 2</div>
-  <div class="col s12 m6 l4">Column 3</div>
+<div class="rw">
+  <div class="cl s12 m6 l4">Column 1</div>
+  <div class="cl s12 m6 l4">Column 2</div>
+  <div class="cl s12 m6 l4">Column 3</div>
 </div>
 ```
 Above code will create 1 column layout on small screen, 2 columns layout on medium screens, and 3 columns layout on large screens.
@@ -28,10 +28,10 @@ m1, m2, m3 .................m12 are 12 grid classes can be used for medium scree
 
 l1, l2, l3 .................m12 are 12 grid classes can be used for large screens.
 
-To collapse columns padding within a row use :
+To collapse columns padding or collapse gutters within a row use :
 
 ```
-<div class="row nopad">
+<div class="rw ngt">
   <div class="col s12 m6 l4">Column 1</div>
   <div class="col s12 m6 l4">Column 2</div>
   <div class="col s12 m6 l4">Column 3</div>
