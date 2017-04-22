@@ -8,23 +8,23 @@ body {
     margin: 0px;
     padding: 0px;
 }
-.row {
+.rw {
     width: 65em;
     max-width: 100%;
     margin: 0 auto;
 }
-.row::before, .row::after {
+.rw::before, .rw::after {
     content: " ";
     display: table;
 }
-.row::after {
+.rw::after {
     clear: both;
 }
-.col {
+.cl {
     float: left;
     padding: 0 0.5rem;
 }
-.row.nopad>.col {
+.rw.ngt>.cl {
     padding: 0;
 }
 * {
