@@ -1,0 +1,150 @@
+$columns:12;
+$gutter:0.5rem;
+$containerWidth:62.5em;
+
+$smallScreen:s,0,39.9375;
+$mediumScreen:m,40,63.9375;
+$largeScreen:l,64,74.9375;
+$xLargeScreen:xl,75,89.9375;
+$xxLargeScreen:xxl,90,119.9375;
+$xxxLargeScreen:xxxl,120,256;
+
+$screens: $smallScreen, $mediumScreen, $largeScreen, $xLargeScreen, $xxLargeScreen, $xxxLargeScreen;
+
+$firstScreen: nth($screens, 1);
+$firstScreenName: nth($firstScreen, 1);
+
+body {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+.lft{
+    float:left;
+}
+.rht{
+    float:right;
+}
+.cntr{
+    width: $containerWidth;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.rw::before, .rw::after, clrbox::before, .clrbox::after {
+    content: " ";
+    display: table;
+}
+.rw::after, .clrbox::after {
+    clear: both;
+}
+.cl {
+    float: left;
+    width:100%;
+    padding: 0 $gutter;
+}
+.rw.out{
+    width:auto;
+    margin-left: -$gutter;
+    margin-right: -$gutter;    
+}
+.rw.ngt>.cl {
+    padding: 0;
+}
+* {
+    position: relative;
+    box-sizing: border-box;
+}
+img{
+    max-width: 100%;
+}
+
+%hidshw {
+    display:none;
+}
+@for $i from 1 through length($screens) {
+    $screen: nth($screens, $i);
+    $name: nth($screen, 1); 
+    .#{$name}shw{
+        @extend %hidshw;
+    }
+}
+
+@mixin screenStyles($screen){
+    $name: nth($screen, 1);
+    
+    .#{$name}exp, .#{$name}exp>*{
+		width:100%;
+	}
+	.#{$name}hid{
+		display:none;
+	}
+	.#{$name}shw{
+		display:block;
+	}
+    
+    @for $col from 1 through $columns{
+         $width:($col * 100% / $columns);
+        .#{$name}#{$col}{
+            width: $width;
+        }
+        
+        @if $col!=$columns{
+            .#{$name}pus#{$col}{
+		        left:$width;
+	        }
+	        .#{$name}pul#{$col}{
+		        left:-$width;
+	        }
+	        .#{$name}off#{$col}{
+		        margin-left:$width;
+	        }
+        }
+    }
+}
+
+@include screenStyles($firstScreen);
+@for $i from 2 through length($screens) {
+    $screen: nth($screens, $i); 
+    $minWidth: nth($screen, 2);
+    @media screen and (min-width:#{$minWidth}em){
+        @include screenStyles($screen);  
+    }
+}
+
+
+%shwonlyhid {
+    display:block;
+}
+@for $i from 1 through length($screens) {
+    $screen: nth($screens, $i);
+    $name: nth($screen, 1); 
+    .#{$name}onlyhid{
+        @extend %shwonlyhid;
+    }
+}
+
+%hidonlyshw {
+    display:none;
+}
+@for $i from 1 through length($screens) {
+    $screen: nth($screens, $i);
+    $name: nth($screen, 1); 
+    .#{$name}onlyshw{
+        @extend %hidonlyshw;
+    }
+}
+
+@for $i from 1 through length($screens) {
+    $screen: nth($screens, $i);
+    $minWidth: nth($screen, 2);
+    $maxWidth: nth($screen, 3);
+    $name: nth($screen, 1); 
+    @media screen and (min-width:#{$minWidth}em) and (maxWidth:#{$maxWidth}em){
+        .#{$name}onlyhid{
+            display:none;
+        }
+        .#{$name}onlyshw{
+            display:block;
+        }
+    }
+}
