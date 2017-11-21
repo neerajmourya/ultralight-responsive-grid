@@ -1,7 +1,9 @@
+// Define columns, gutter and container width
 $columns:12;
 $gutter:0.5rem;
 $containerWidth:62.5em;
 
+//Define Screens with name, min-width, max-width
 $smallScreen:s,0,39.9375;
 $mediumScreen:m,40,63.9375;
 $largeScreen:l,64,74.9375;
@@ -9,11 +11,14 @@ $xLargeScreen:xl,75,89.9375;
 $xxLargeScreen:xxl,90,119.9375;
 $xxxLargeScreen:xxxl,120,256;
 
+//Add screens to the list
 $screens: $smallScreen, $mediumScreen, $largeScreen, $xLargeScreen, $xxLargeScreen, $xxxLargeScreen;
 
-$firstScreen: nth($screens, 1);
-$firstScreenName: nth($firstScreen, 1);
-
+/*
+ * Ultralight Responsive Grid V4.0 - 12 columns responsive grid keeping the filesize light so that can be downloaded faster.
+ * Copyright (C) 2017 Neeraj Mourya
+ * Licensed under the GPL V3 or Later, License (https://www.gnu.org/licenses/gpl-3.0.en.html)
+ */
 body {
 	width: 100%;
 	margin: 0px;
@@ -58,20 +63,24 @@ img{
     max-width: 100%;
 }
 
+// placeholder to be extended by shw for all screens
 %hidshw {
     display:none;
 }
+// display none for all shw initially for all screens
 @for $i from 1 through length($screens) {
     $screen: nth($screens, $i);
     $name: nth($screen, 1); 
     .#{$name}shw{
-        @extend %hidshw;
+        @extend %hidshw; // extending placeholder %hidshw
     }
 }
 
+// mixin to define styles for a screen
 @mixin screenStyles($screen){
     $name: nth($screen, 1);
     
+    // exp, hid, shw classes for each screen
     .#{$name}exp, .#{$name}exp>*{
 		width:100%;
 	}
@@ -82,12 +91,15 @@ img{
 		display:block;
 	}
     
+    // columns styles by looping through the number of columns
     @for $col from 1 through $columns{
-         $width:($col * 100% / $columns);
+    	// Calculate the width of the column
+        $width:($col * 100% / $columns);
         .#{$name}#{$col}{
             width: $width;
         }
         
+        // pus, pul, off classes for each columns except last column
         @if $col!=$columns{
             .#{$name}pus#{$col}{
 		        left:$width;
@@ -102,7 +114,9 @@ img{
     }
 }
 
-@include screenStyles($firstScreen);
+// call mixin screenStyles to define styles for first screen
+@include screenStyles(nth($screens, 1));
+// call mixin screenStyles to define styles for screens from 2nd to last
 @for $i from 2 through length($screens) {
     $screen: nth($screens, $i); 
     $minWidth: nth($screen, 2);
@@ -111,29 +125,33 @@ img{
     }
 }
 
-
+// placeholder to be extended by onlyhid classes for all screens
 %shwonlyhid {
     display:block;
 }
+// display block for all onlyhid initially for all screens
 @for $i from 1 through length($screens) {
     $screen: nth($screens, $i);
     $name: nth($screen, 1); 
     .#{$name}onlyhid{
-        @extend %shwonlyhid;
+        @extend %shwonlyhid; // extending placeholder %shwonlyhid
     }
 }
 
+// placeholder to be extended by onlyshw classes for all screens
 %hidonlyshw {
     display:none;
 }
+// display none for all onlyshw initially for all screens
 @for $i from 1 through length($screens) {
     $screen: nth($screens, $i);
     $name: nth($screen, 1); 
     .#{$name}onlyshw{
-        @extend %hidonlyshw;
+        @extend %hidonlyshw; // extending placeholder %hidonlyshw
     }
 }
 
+// onlyhid, onlyshw classes for each screen
 @for $i from 1 through length($screens) {
     $screen: nth($screens, $i);
     $minWidth: nth($screen, 2);
