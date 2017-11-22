@@ -36,9 +36,9 @@ To collapse columns padding or collapse gutters within a row use :
 
 ```
 <div class="rw ngt">
-  <div class="col s12 m6 l4">Column 1</div>
-  <div class="col s12 m6 l4">Column 2</div>
-  <div class="col s12 m6 l4">Column 3</div>
+  <div class="cl s12 m6 l4">Column 1</div>
+  <div class="cl s12 m6 l4">Column 2</div>
+  <div class="cl s12 m6 l4">Column 3</div>
 </div>
 ```
 
