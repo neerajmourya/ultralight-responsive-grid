@@ -1,5 +1,5 @@
 # Ultralight Responsive Grid
-Light weight responsive grid css framework. Lightweight filesize makes it download faster. It is based on mobile first or small screen first. Build on sass / scss thus easily configurable.
+Light weight responsive grid css framework. Lightweight filesize makes it download faster. It is based on mobile first or small screen first. Build on sass / scss thus easily configurable. Lightweight css grid has wide variety of features such as classes for push, pull, no gutters, expand, hide, show, hide or show only on specific screen. etc.
 
 * [Project Page](http://www.egrapes.in/projects/css/ultralight-responsive-grid/) - Project Page
 * [Getting Started](https://neerajmourya.github.io/ultralight-responsive-grid/) - Getting Started
