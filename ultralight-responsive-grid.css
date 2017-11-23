@@ -26,6 +26,10 @@ body {
 .rw::after, .clrbox::after {
   clear: both; }
 
+.rw.tbl {
+  display: table;
+  width: 100%; }
+
 .cl {
   float: left;
   width: 100%;
@@ -194,6 +198,16 @@ img {
   width: 100%; }
 
 @media screen and (min-width: 40em) {
+  .mcl {
+    display: block;
+    float: left;
+    width: 100%; }
+
+  .mtcl {
+    float: none;
+    display: table-cell;
+    width: auto; }
+
   .mexp, .mexp > * {
     width: 100%; }
 
@@ -338,6 +352,16 @@ img {
   .m12 {
     width: 100%; } }
 @media screen and (min-width: 64em) {
+  .lcl {
+    display: block;
+    float: left;
+    width: 100%; }
+
+  .ltcl {
+    float: none;
+    display: table-cell;
+    width: auto; }
+
   .lexp, .lexp > * {
     width: 100%; }
 
@@ -482,6 +506,16 @@ img {
   .l12 {
     width: 100%; } }
 @media screen and (min-width: 75em) {
+  .xlcl {
+    display: block;
+    float: left;
+    width: 100%; }
+
+  .xltcl {
+    float: none;
+    display: table-cell;
+    width: auto; }
+
   .xlexp, .xlexp > * {
     width: 100%; }
 
@@ -626,6 +660,16 @@ img {
   .xl12 {
     width: 100%; } }
 @media screen and (min-width: 90em) {
+  .xxlcl {
+    display: block;
+    float: left;
+    width: 100%; }
+
+  .xxltcl {
+    float: none;
+    display: table-cell;
+    width: auto; }
+
   .xxlexp, .xxlexp > * {
     width: 100%; }
 
@@ -770,6 +814,16 @@ img {
   .xxl12 {
     width: 100%; } }
 @media screen and (min-width: 120em) {
+  .xxxlcl {
+    display: block;
+    float: left;
+    width: 100%; }
+
+  .xxxltcl {
+    float: none;
+    display: table-cell;
+    width: auto; }
+
   .xxxlexp, .xxxlexp > * {
     width: 100%; }
 

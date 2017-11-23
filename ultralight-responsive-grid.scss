@@ -43,6 +43,10 @@ body {
 .rw::after, .clrbox::after {
     clear: both;
 }
+.rw.tbl{
+	display:table;
+	width:100%;
+}
 .cl {
     float: left;
     width:100%;
@@ -81,6 +85,21 @@ img{
 @mixin screenStyles($screen){
     $name: nth($screen, 1);
     
+    @if $name!=(nth((nth($screens, 1)), 1)){
+		// display block column for screen
+		.#{$name}cl{
+			display:block;
+			float: left;
+			width:100%;
+		} 
+		//display table-cell for screen
+		.#{$name}tcl{
+			float:none;
+			display:table-cell;
+			width:auto;
+		}
+	}
+	
     // exp, hid, shw classes for each screen
     .#{$name}exp, .#{$name}exp>*{
 		width:100%;
@@ -91,7 +110,7 @@ img{
 	.#{$name}shw{
 		display:block;
 	}
-    
+	
     // columns styles by looping through the number of columns
     @for $col from 1 through $columns{
     	// Calculate the width of the column
