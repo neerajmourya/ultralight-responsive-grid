@@ -36,6 +36,9 @@ body {
     max-width: 100%;
     margin: 0 auto;
 }
+.cntr-fluid{
+	width: 100%;
+}
 .rw::before, .rw::after, .clrbox::before, .clrbox::after {
     content: " ";
     display: table;
