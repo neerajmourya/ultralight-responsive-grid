@@ -9,26 +9,24 @@ $columns:12;
 $gutter:15px;
 
 //Define Screens with name, min-width, max-width
-$smallScreen:s,0,575.98;
-$mediumScreen:m,576,767.98;
-$largeScreen:l,768,991.98;
-$xLargeScreen:xl,992,1199.98;
-$xxLargeScreen:xxl,1200,1599.98;
-$xxxLargeScreen:xxxl,1600,4000;
+$smallScreen:s,0,575.98,540;
+$mediumScreen:m,576,767.98,720;
+$largeScreen:l,768,991.98,960;
+$xLargeScreen:xl,992,1199.98,1140;
+$xxLargeScreen:xxl,1200,1599.98,1520;
+$xxxLargeScreen:xxxl,1600,1920,1800;
 
 //Add screens to the list
 $screens: $smallScreen, $mediumScreen, $largeScreen, $xLargeScreen, $xxLargeScreen, $xxxLargeScreen;
 
+* {
+    position: relative;
+    box-sizing: border-box;
+}
 body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
-}
-.lft{
-    float:left;
-}
-.rht{
-    float:right;
 }
 .cntr,.cntr-fluid{
 	width: 100%;
@@ -40,34 +38,68 @@ body {
 .cntr .cntr, .cntr .cntr-fluid, .cntr-fluid .cntr, .cntr-fluid .cntr-fluid{
 	margin:0;
 }
-.rw::before, .rw::after, .clrbox::before, .clrbox::after {
-    content: " ";
-    display: table;
-}
-.rw::after, .clrbox::after {
-    clear: both;
-}
-.rw.tbl{
-	display:table;
-	width:100%;
-}
-.cl {
-    float: left;
-    width:100%;
-    padding: 0 $gutter;
+.rw,.cl{
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-wrap: wrap;
+	flex-wrap: wrap;
 }
 .rw.out{
     width:auto;
     margin-left: -$gutter;
     margin-right: -$gutter;    
 }
+.cl {
+    padding: 0 $gutter;
+    flex:1;
+}
 .rw.ngt>.cl {
     padding: 0;
 }
-* {
-    position: relative;
-    box-sizing: border-box;
+//Flex styles
+.fdcol{
+	flex-direction: column;
 }
+.ais{
+	align-items: flex-start;
+}
+.aic{
+	align-items: center;
+}
+.aie{
+	align-items: flex-end;
+}
+.aist{
+	align-items: stretch;
+}
+.ass{
+	align-self: flex-start;
+}
+.asc{
+	align-self: center;
+}
+.ase{
+	align-self: flex-end;
+}
+.asst{
+	align-self: stretch;
+}
+.jcs{
+	justify-content: flex-start;
+}
+.jcc{
+	justify-content: center;
+}
+.jce{
+	justify-content: flex-end;
+}
+.jcsa{
+	justify-content: space-around;
+}
+.jcsb{
+	justify-content: space-between;
+}
+
 img{
     max-width: 100%;
 }
@@ -88,22 +120,11 @@ img{
 // mixin to define styles for a screen
 @mixin screenStyles($screen){
     $name: nth($screen, 1);
-    
-    @if $name!=(nth((nth($screens, 1)), 1)){
-		// display block column for screen
-		.#{$name}cl{
-			display:block;
-			float: left;
-			width:100%;
-		} 
-		//display table-cell for screen
-		.#{$name}tcl{
-			float:none;
-			display:table-cell;
-			width:auto;
-		}
+    $cntrWidth: nth($screen, 4);
+    .cntr{
+		width:#{$cntrWidth}px;
 	}
-	
+	    
     // exp, hid, shw classes for each screen
     .#{$name}exp, .#{$name}exp>*{
 		width:100%;
@@ -112,7 +133,7 @@ img{
 		display:none;
 	}
 	.#{$name}shw{
-		display:block;
+		display:flex;
 	}
 	
     // columns styles by looping through the number of columns
@@ -120,21 +141,25 @@ img{
     	// Calculate the width of the column
         $width:($col * 100% / $columns);
         .#{$name}#{$col}{
-            width: $width;
+            flex: 0 0 $width;
         }
         
         // pus, pul, off classes for each columns except last column
         @if $col!=$columns{
-            .#{$name}pus#{$col}{
-		        left:$width;
-	        }
-	        .#{$name}pul#{$col}{
-		        left:-$width;
+            .#{$name}ord#{$col}{
+		        order:#{$col};
 	        }
 	        .#{$name}off#{$col}{
 		        margin-left:$width;
 	        }
         }
+    }
+    
+    .#{$name}ordfirst{
+        order:-1;
+    }
+    .#{$name}ordlast{
+        order:13;
     }
 }
 
@@ -143,18 +168,15 @@ img{
 // call mixin screenStyles to define styles for screens from 2nd to last
 @for $i from 2 through length($screens) {
     $screen: nth($screens, $i); 
-    $minWidth: nth($screen, 2);
-    @media screen and (min-width:#{$minWidth}px){
-    	.cntr{
-    		width:#{$minWidth}px;
-    	}
+    $minWidth: nth($screen, 2);    
+    @media screen and (min-width:#{$minWidth}px){    	
         @include screenStyles($screen);  
     }
 }
 
 // placeholder to be extended by onlyhid classes for all screens
 %shwonlyhid {
-    display:block;
+    display:flex;
 }
 // display block for all onlyhid initially for all screens
 @for $i from 1 through length($screens) {
@@ -189,7 +211,7 @@ img{
             display:none;
         }
         .#{$name}onlyshw{
-            display:block;
+            display:flex;
         }
     }
 }
