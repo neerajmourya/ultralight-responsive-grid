@@ -29,26 +29,30 @@ $columns:12;
 $gutter:15px;
 
 //Define Screens with name, min-width, max-width
-$smallScreen:s,0,575.98,540;
-$mediumScreen:m,576,767.98,720;
-$largeScreen:l,768,991.98,960;
-$xLargeScreen:xl,992,1199.98,1140;
-$xxLargeScreen:xxl,1200,1599.98,1520;
-$xxxLargeScreen:xxxl,1600,1920,1800;
+$smallScreen:s,0,575.98;
+$mediumScreen:m,576,767.98,540;
+$largeScreen:l,768,991.98,720;
+$xLargeScreen:xl,992,1199.98,960;
+$xxLargeScreen:xxl,1200,1599.98,1140;
+$xxxLargeScreen:xxxl,1600,1920,1520;
 
 //Add screens to the list
 $screens: $smallScreen, $mediumScreen, $largeScreen, $xLargeScreen, $xxLargeScreen, $xxxLargeScreen;
 
-* {
-    position: relative;
+* {    
     box-sizing: border-box;
 }
-body {
+html{
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+html, body {
 	width: 100%;
 	margin: 0px;
 	padding: 0px;
 }
 .cntr,.cntr-fluid{
+	position: relative;
 	width: 100%;
 }
 .cntr{
@@ -59,6 +63,7 @@ body {
 	margin:0;
 }
 .rw,.cl{
+	position: relative;
 	display: -ms-flexbox;
 	display: flex;
 	-ms-flex-wrap: wrap;
@@ -72,13 +77,21 @@ body {
 .cl {
     padding: 0 $gutter;
     flex:1;
+    max-width:100%;
 }
 .rw.ngt>.cl {
     padding: 0;
 }
+.fulwid{
+	width:100%;
+	max-width:100%;
+}
 //Flex styles
 .fdcol{
 	flex-direction: column;
+}
+.fdrow{
+	flex-direction: row;
 }
 .ais{
 	align-items: flex-start;
@@ -139,12 +152,7 @@ img{
 
 // mixin to define styles for a screen
 @mixin screenStyles($screen){
-    $name: nth($screen, 1);
-    $cntrWidth: nth($screen, 4);
-    .cntr{
-		width:#{$cntrWidth}px;
-	}
-	    
+    $name: nth($screen, 1);    
     // exp, hid, shw classes for each screen
     .#{$name}exp, .#{$name}exp>*{
 		width:100%;
@@ -175,6 +183,9 @@ img{
         }
     }
     
+    .#{$name}auto{
+        flex:initial;
+    }
     .#{$name}ordfirst{
         order:-1;
     }
@@ -188,8 +199,12 @@ img{
 // call mixin screenStyles to define styles for screens from 2nd to last
 @for $i from 2 through length($screens) {
     $screen: nth($screens, $i); 
-    $minWidth: nth($screen, 2);    
+    $minWidth: nth($screen, 2);
+    $cntrWidth: nth($screen, 4);    
     @media screen and (min-width:#{$minWidth}px){    	
+    	.cntr{
+			width:#{$cntrWidth}px;
+		}
         @include screenStyles($screen);  
     }
 }

@@ -24,15 +24,19 @@
  * SOFTWARE.
  */
 * {
-  position: relative;
   box-sizing: border-box; }
 
-body {
+html {
+  overflow-y: auto;
+  overflow-x: hidden; }
+
+html, body {
   width: 100%;
   margin: 0px;
   padding: 0px; }
 
 .cntr, .cntr-fluid {
+  position: relative;
   width: 100%; }
 
 .cntr {
@@ -43,6 +47,7 @@ body {
   margin: 0; }
 
 .rw, .cl {
+  position: relative;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
@@ -55,13 +60,21 @@ body {
 
 .cl {
   padding: 0 15px;
-  flex: 1; }
+  flex: 1;
+  max-width: 100%; }
 
 .rw.ngt > .cl {
   padding: 0; }
 
+.fulwid {
+  width: 100%;
+  max-width: 100%; }
+
 .fdcol {
   flex-direction: column; }
+
+.fdrow {
+  flex-direction: row; }
 
 .ais {
   align-items: flex-start; }
@@ -107,9 +120,6 @@ img {
 
 .sshw, .mshw, .lshw, .xlshw, .xxlshw, .xxxlshw {
   display: none; }
-
-.cntr {
-  width: 540px; }
 
 .sexp, .sexp > * {
   width: 100%; }
@@ -222,6 +232,9 @@ img {
 .s12 {
   flex: 0 0 100%; }
 
+.sauto {
+  flex: initial; }
+
 .sordfirst {
   order: -1; }
 
@@ -230,7 +243,7 @@ img {
 
 @media screen and (min-width: 576px) {
   .cntr {
-    width: 720px; }
+    width: 540px; }
 
   .mexp, .mexp > * {
     width: 100%; }
@@ -343,6 +356,9 @@ img {
   .m12 {
     flex: 0 0 100%; }
 
+  .mauto {
+    flex: initial; }
+
   .mordfirst {
     order: -1; }
 
@@ -350,7 +366,7 @@ img {
     order: 13; } }
 @media screen and (min-width: 768px) {
   .cntr {
-    width: 960px; }
+    width: 720px; }
 
   .lexp, .lexp > * {
     width: 100%; }
@@ -463,6 +479,9 @@ img {
   .l12 {
     flex: 0 0 100%; }
 
+  .lauto {
+    flex: initial; }
+
   .lordfirst {
     order: -1; }
 
@@ -470,7 +489,7 @@ img {
     order: 13; } }
 @media screen and (min-width: 992px) {
   .cntr {
-    width: 1140px; }
+    width: 960px; }
 
   .xlexp, .xlexp > * {
     width: 100%; }
@@ -583,6 +602,9 @@ img {
   .xl12 {
     flex: 0 0 100%; }
 
+  .xlauto {
+    flex: initial; }
+
   .xlordfirst {
     order: -1; }
 
@@ -590,7 +612,7 @@ img {
     order: 13; } }
 @media screen and (min-width: 1200px) {
   .cntr {
-    width: 1520px; }
+    width: 1140px; }
 
   .xxlexp, .xxlexp > * {
     width: 100%; }
@@ -703,6 +725,9 @@ img {
   .xxl12 {
     flex: 0 0 100%; }
 
+  .xxlauto {
+    flex: initial; }
+
   .xxlordfirst {
     order: -1; }
 
@@ -710,7 +735,7 @@ img {
     order: 13; } }
 @media screen and (min-width: 1600px) {
   .cntr {
-    width: 1800px; }
+    width: 1520px; }
 
   .xxxlexp, .xxxlexp > * {
     width: 100%; }
@@ -822,6 +847,9 @@ img {
 
   .xxxl12 {
     flex: 0 0 100%; }
+
+  .xxxlauto {
+    flex: initial; }
 
   .xxxlordfirst {
     order: -1; }
